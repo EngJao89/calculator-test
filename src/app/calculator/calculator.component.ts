@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -80,6 +80,54 @@ export class CalculatorComponent {
       this.previousValue.set(null);
       this.operation.set(null);
       this.waitingForNewValue.set(true);
+    }
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    const key = event.key;
+
+    // Números 0-9
+    if (key >= '0' && key <= '9') {
+      event.preventDefault();
+      this.inputNumber(key);
+      return;
+    }
+
+    // Operadores
+    switch (key) {
+      case '+':
+        event.preventDefault();
+        this.performOperation('+');
+        break;
+      case '-':
+        event.preventDefault();
+        this.performOperation('-');
+        break;
+      case '*':
+        event.preventDefault();
+        this.performOperation('*');
+        break;
+      case '/':
+        event.preventDefault();
+        this.performOperation('/');
+        break;
+      case 'Enter':
+      case '=':
+        event.preventDefault();
+        this.equals();
+        break;
+      case 'Escape':
+      case 'Delete':
+      case 'Backspace':
+        event.preventDefault();
+        this.clear();
+        break;
+      case '.':
+      case ',':
+        event.preventDefault();
+        this.inputDecimal();
+        break;
     }
   }
 }
