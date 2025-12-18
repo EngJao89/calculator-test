@@ -1,6 +1,12 @@
 import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface CalculationHistory {
+  expression: string;
+  result: string;
+  timestamp: Date;
+}
+
 @Component({
   selector: 'app-calculator',
   standalone: true,
@@ -13,6 +19,7 @@ export class CalculatorComponent {
   previousValue = signal<number | null>(null);
   operation = signal<string | null>(null);
   waitingForNewValue = signal(false);
+  history = signal<CalculationHistory[]>([]);
 
   inputNumber(num: string): void {
     if (this.waitingForNewValue()) {
@@ -27,7 +34,7 @@ export class CalculatorComponent {
     if (this.waitingForNewValue()) {
       this.display.set('0.');
       this.waitingForNewValue.set(false);
-    } else if (this.display().indexOf('.') === -1) {
+    } else if (!this.display().includes('.')) {
       this.display.set(this.display() + '.');
     }
   }
@@ -40,7 +47,7 @@ export class CalculatorComponent {
   }
 
   performOperation(nextOperation: string): void {
-    const inputValue = parseFloat(this.display());
+    const inputValue = Number.parseFloat(this.display());
 
     if (this.previousValue() === null) {
       this.previousValue.set(inputValue);
@@ -63,7 +70,7 @@ export class CalculatorComponent {
       case '*':
         return firstValue * secondValue;
       case '/':
-        return secondValue !== 0 ? firstValue / secondValue : 0;
+        return secondValue === 0 ? 0 : firstValue / secondValue;
       case '=':
         return secondValue;
       default:
@@ -72,29 +79,57 @@ export class CalculatorComponent {
   }
 
   equals(): void {
-    const inputValue = parseFloat(this.display());
+    const inputValue = Number.parseFloat(this.display());
+    const prevValue = this.previousValue();
+    const op = this.operation();
 
-    if (this.previousValue() !== null && this.operation()) {
-      const result = this.calculate(this.previousValue()!, inputValue, this.operation()!);
-      this.display.set(String(result));
+    if (prevValue !== null && op) {
+      const result = this.calculate(prevValue, inputValue, op);
+      const resultString = String(result);
+
+      // Salvar no histórico
+      const expression = `${prevValue} ${this.getOperationSymbol(op)} ${inputValue}`;
+      this.history.update(history => [
+        { expression, result: resultString, timestamp: new Date() },
+        ...history
+      ]);
+
+      this.display.set(resultString);
       this.previousValue.set(null);
       this.operation.set(null);
       this.waitingForNewValue.set(true);
     }
   }
 
+  getOperationSymbol(operation: string): string {
+    switch (operation) {
+      case '+': return '+';
+      case '-': return '-';
+      case '*': return '×';
+      case '/': return '÷';
+      default: return operation;
+    }
+  }
+
+  clearHistory(): void {
+    this.history.set([]);
+  }
+
+  useHistoryResult(result: string): void {
+    this.display.set(result);
+    this.waitingForNewValue.set(true);
+  }
+
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
     const key = event.key;
 
-    // Números 0-9
     if (key >= '0' && key <= '9') {
       event.preventDefault();
       this.inputNumber(key);
       return;
     }
 
-    // Operadores
     switch (key) {
       case '+':
         event.preventDefault();

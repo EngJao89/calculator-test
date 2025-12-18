@@ -27,5 +27,26 @@
       <button class="button button-number" (click)="inputDecimal()">.</button>
     </div>
   </div>
+
+  <div class="history-panel">
+    <div class="history-header">
+      <h3>Histórico</h3>
+      <button class="button-clear-history" (click)="clearHistory()" *ngIf="history().length > 0">
+        Limpar
+      </button>
+    </div>
+    <div class="history-list">
+      @if (history().length === 0) {
+        <div class="history-empty">Nenhum cálculo realizado ainda</div>
+      } @else {
+        @for (item of history(); track $index) {
+          <div class="history-item" (click)="useHistoryResult(item.result)" tabindex="0" role="button" (keydown.enter)="useHistoryResult(item.result)">
+            <div class="history-expression">{{ item.expression }}</div>
+            <div class="history-result">= {{ item.result }}</div>
+          </div>
+        }
+      }
+    </div>
+  </div>
 </div>
 
