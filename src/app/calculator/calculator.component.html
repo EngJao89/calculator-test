@@ -1,0 +1,31 @@
+<div class="calculator-container">
+  <div class="calculator">
+    <div class="display">
+      <div class="display-value">{{ display() }}</div>
+    </div>
+    <div class="buttons">
+      <button class="button button-clear" (click)="clear()">C</button>
+      <button class="button button-operator" (click)="performOperation('/')">/</button>
+      <button class="button button-operator" (click)="performOperation('*')">×</button>
+
+      <button class="button button-number" (click)="inputNumber('7')">7</button>
+      <button class="button button-number" (click)="inputNumber('8')">8</button>
+      <button class="button button-number" (click)="inputNumber('9')">9</button>
+      <button class="button button-operator" (click)="performOperation('-')">-</button>
+
+      <button class="button button-number" (click)="inputNumber('4')">4</button>
+      <button class="button button-number" (click)="inputNumber('5')">5</button>
+      <button class="button button-number" (click)="inputNumber('6')">6</button>
+      <button class="button button-operator" (click)="performOperation('+')">+</button>
+
+      <button class="button button-number" (click)="inputNumber('1')">1</button>
+      <button class="button button-number" (click)="inputNumber('2')">2</button>
+      <button class="button button-number" (click)="inputNumber('3')">3</button>
+      <button class="button button-equals" rowspan="2" (click)="equals()">=</button>
+
+      <button class="button button-number button-zero" (click)="inputNumber('0')">0</button>
+      <button class="button button-number" (click)="inputDecimal()">.</button>
+    </div>
+  </div>
+</div>
+
