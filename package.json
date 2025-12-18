@@ -50,7 +50,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/commitizen"
+      "path": "cz-conventional-changelog"
     }
   }
 }
