@@ -1,230 +1,175 @@
-# 🧮 Calculadora Angular
+# Calculadora Angular
 
-Uma calculadora moderna e funcional desenvolvida com Angular 21, com suporte completo ao teclado, histórico de cálculos e interface responsiva.
-
-## ✨ Funcionalidades
-
-### Operações Básicas
-- ➕ **Adição** (`+`)
-- ➖ **Subtração** (`-`)
-- ✖️ **Multiplicação** (`×`)
-- ➗ **Divisão** (`÷`)
-
-### Recursos Avançados
-- ⌨️ **Suporte completo ao teclado** - Use seu teclado para realizar cálculos
-- 📜 **Histórico de cálculos** - Todas as operações são salvas automaticamente
-- 🎯 **Reutilização de resultados** - Clique em qualquer item do histórico para usar o resultado
-- 🧹 **Limpeza rápida** - Botão C ou teclas Escape/Delete/Backspace para limpar
-- 📱 **Design responsivo** - Funciona perfeitamente em desktop e mobile
-- 🎨 **Interface moderna** - Design elegante com tema escuro
-
-## 🚀 Como Usar
-
-### Interface Gráfica
-
-1. **Números**: Clique nos botões numéricos (0-9)
-2. **Operadores**: Clique nos botões de operação (+, -, ×, ÷)
-3. **Igual**: Clique no botão `=` para calcular
-4. **Limpar**: Clique no botão `C` para resetar
-5. **Decimal**: Clique no botão `.` para adicionar ponto decimal
-6. **Histórico**: 
-   - Visualize todos os cálculos realizados no painel lateral
-   - Clique em qualquer item do histórico para usar o resultado
-   - Use o botão "Limpar" para apagar todo o histórico
-
-### Atalhos de Teclado
-
-| Tecla | Ação |
-|-------|------|
-| `0-9` | Digitar números |
-| `+` | Adição |
-| `-` | Subtração |
-| `*` | Multiplicação |
-| `/` | Divisão |
-| `Enter` ou `=` | Calcular resultado |
-| `Escape`, `Delete` ou `Backspace` | Limpar calculadora |
-| `.` ou `,` | Adicionar ponto decimal |
-
-### Exemplos de Uso
-
-**Exemplo 1: Cálculo simples**
-```
-5 + 3 = 8
-```
-
-**Exemplo 2: Cadeia de operações**
-```
-10 + 5 × 2 = 30
-```
-
-**Exemplo 3: Números decimais**
-```
-1.5 + 2.5 = 4
-```
-
-## 📦 Instalação
-
-### Pré-requisitos
-
-- Node.js (versão 18 ou superior)
-- npm (versão 11.6.2 ou superior)
-
-### Passos
-
-1. **Clone o repositório** (ou baixe o projeto)
-   ```bash
-   git clone <url-do-repositorio>
-   cd calculator-test
-   ```
-
-2. **Instale as dependências**
-   ```bash
-   npm install
-   ```
-
-3. **Inicie o servidor de desenvolvimento**
-   ```bash
-   npm start
-   # ou
-   ng serve
-   ```
-
-4. **Acesse a aplicação**
-   - Abra seu navegador em `http://localhost:4200/`
-   - A aplicação recarrega automaticamente quando você modifica os arquivos
-
-## 🏗️ Estrutura do Projeto
-
-```
-calculator-test/
-├── src/
-│   ├── app/
-│   │   ├── calculator/              # Módulo da calculadora
-│   │   │   ├── calculator.component.ts      # Lógica do componente
-│   │   │   ├── calculator.component.html    # Template HTML
-│   │   │   ├── calculator.component.css     # Estilos
-│   │   │   └── calculator.component.spec.ts # Testes unitários
-│   │   ├── app.ts                   # Componente raiz
-│   │   ├── app.routes.ts            # Configuração de rotas
-│   │   └── app.config.ts            # Configuração da aplicação
-│   ├── index.html                   # HTML principal
-│   ├── main.ts                       # Ponto de entrada
-│   └── styles.css                   # Estilos globais
-├── angular.json                      # Configuração do Angular
-├── package.json                      # Dependências do projeto
-└── tsconfig.json                     # Configuração TypeScript
-```
-
-## 🧪 Testes
-
-O projeto possui **52 testes unitários** cobrindo todas as funcionalidades da calculadora.
-
-### Executar Testes
-
-```bash
-npm test
-# ou
-ng test
-```
-
-### Cobertura de Testes
-
-Os testes cobrem:
-- ✅ Inicialização e estado inicial
-- ✅ Entrada de números e decimais
-- ✅ Todas as operações matemáticas
-- ✅ Histórico de cálculos
-- ✅ Suporte ao teclado
-- ✅ Casos especiais (divisão por zero, números negativos, etc.)
-- ✅ Cálculos complexos e cadeias de operações
-
-## 🛠️ Scripts Disponíveis
-
-| Comando | Descrição |
-|---------|-----------|
-| `npm start` | Inicia o servidor de desenvolvimento |
-| `npm run build` | Compila o projeto para produção |
-| `npm test` | Executa os testes unitários |
-| `npm run watch` | Compila em modo watch (desenvolvimento) |
-| `npm run commit` | Abre o commitizen para commits padronizados |
-
-## 🎨 Tecnologias Utilizadas
-
-- **Angular 21** - Framework principal
-- **TypeScript 5.9** - Linguagem de programação
-- **Vitest 4.0** - Framework de testes
-- **Angular Signals** - Sistema reativo moderno
-- **CSS3** - Estilização moderna com gradientes e animações
-
-## 📝 Arquitetura
-
-### Componente CalculatorComponent
-
-O componente principal utiliza:
-
-- **Signals** para gerenciamento de estado reativo
-- **HostListener** para captura de eventos de teclado
-- **Standalone Component** (sem módulos)
-- **Interface CalculationHistory** para tipagem do histórico
-
-### Fluxo de Operação
-
-1. Usuário insere número → `inputNumber()`
-2. Usuário seleciona operador → `performOperation()`
-3. Usuário insere segundo número → `inputNumber()`
-4. Usuário pressiona igual → `equals()`
-   - Calcula o resultado
-   - Salva no histórico
-   - Atualiza o display
-
-## 🐛 Resolução de Problemas
-
-### Problema: Módulo não encontrado
-**Solução**: Execute `npm install` para instalar todas as dependências
-
-### Problema: Porta 4200 já em uso
-**Solução**: Use `ng serve --port 4201` para usar outra porta
-
-### Problema: Testes falhando
-**Solução**: Certifique-se de que todas as dependências estão instaladas: `npm install`
-
-## 🤝 Contribuindo
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`npm run commit`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto é privado.
-
-## 👨‍💻 Desenvolvimento
-
-### Adicionar Nova Funcionalidade
-
-1. Crie um novo método no `calculator.component.ts`
-2. Adicione o botão/evento no `calculator.component.html`
-3. Adicione estilos no `calculator.component.css` se necessário
-4. Escreva testes no `calculator.component.spec.ts`
-5. Execute os testes para garantir que tudo funciona
-
-### Padrões de Código
-
-- Use **signals** para estado reativo
-- Mantenha métodos pequenos e focados
-- Adicione comentários para lógica complexa
-- Siga o padrão de nomenclatura do Angular
-- Escreva testes para novas funcionalidades
-
-## 📚 Recursos Adicionais
-
-- [Documentação Angular](https://angular.dev)
-- [Angular Signals](https://angular.dev/guide/signals)
-- [Vitest Documentation](https://vitest.dev)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+Documentação do projeto **calculator-test**: uma aplicação de calculadora web construída com Angular 21.
 
 ---
 
-Desenvolvido com ❤️ usando Angular 21
+## Descrição do projeto
+
+Aplicação SPA (Single Page Application) que oferece uma calculadora com operações básicas (adição, subtração, multiplicação e divisão), histórico de cálculos em sessão e entrada via teclado. A interface é responsiva e utiliza tema escuro.
+
+### Funcionalidades
+
+- **Operações:** `+`, `-`, `×`, `÷`
+- **Entrada por teclado:** números, operadores, Enter (=), Escape/Delete/Backspace (limpar), ponto/vírgula (decimal)
+- **Histórico:** lista de expressões e resultados; clique em um item para reutilizar o resultado
+- **Limpeza:** botão C ou teclas Escape, Delete, Backspace
+
+---
+
+## Como rodar o projeto
+
+### Pré-requisitos
+
+- **Node.js** 18+
+- **npm** 11.6.2+ (ou o gerenciador definido em `package.json`)
+
+### Instalação
+
+```bash
+# Na raiz do projeto
+npm install
+```
+
+### Desenvolvimento
+
+```bash
+npm start
+```
+
+Abre o servidor de desenvolvimento em `http://localhost:4200/`. A aplicação recarrega ao alterar os arquivos.
+
+**Porta alternativa:**
+
+```bash
+ng serve --port 4201
+```
+
+### Build de produção
+
+```bash
+npm run build
+```
+
+Saída em `dist/calculator-test/`. Build otimizado e com hashing de assets.
+
+### Testes
+
+```bash
+npm test
+```
+
+Executa os testes unitários com Vitest (52 testes no total).
+
+### Outros scripts
+
+| Comando           | Descrição                          |
+|-------------------|------------------------------------|
+| `npm run watch`   | Build em modo watch (development)  |
+| `npm run commit`  | Commitizen para commits padronizados |
+| `npm run serve:ssr:calculator-test` | Sobe o servidor SSR (após build) |
+
+---
+
+## Arquitetura
+
+### Visão geral
+
+- **Shell:** `App` (componente raiz) com `<router-outlet />`.
+- **Rota principal:** `/` e `/calculator` renderizam o mesmo componente da calculadora.
+- **Estado:** concentrado no componente da calculadora, sem store global.
+
+### Estrutura de pastas relevante
+
+```
+src/
+├── app/
+│   ├── calculator/                    # Feature da calculadora
+│   │   ├── calculator.component.ts     # Lógica e estado
+│   │   ├── calculator.component.html   # Template
+│   │   ├── calculator.component.css   # Estilos do componente
+│   │   └── calculator.component.spec.ts
+│   ├── app.ts                         # Root component
+│   ├── app.html
+│   ├── app.config.ts                  # Providers e rotas (provideRouter)
+│   ├── app.routes.ts                  # Definição de rotas
+│   └── app.routes.server.ts           # Rotas para SSR
+├── main.ts                            # Bootstrap da aplicação
+├── main.server.ts                     # Bootstrap para SSR
+├── server.ts                          # Servidor Express (SSR)
+├── index.html
+└── styles.css                         # Estilos globais
+```
+
+### Fluxo da calculadora
+
+1. **Display e estado:** `display`, `previousValue`, `operation`, `waitingForNewValue`, `history` (todos como Signals).
+2. **Entrada:** números e decimal atualizam o display; operador armazena o valor atual e a operação; igual calcula, exibe o resultado e grava no histórico.
+3. **Teclado:** `HostListener('window:keydown')` chama os mesmos métodos usados pelos botões (inputNumber, performOperation, equals, clear, inputDecimal).
+
+### Stack técnica
+
+- **Angular 21** – framework e CLI
+- **TypeScript 5.9** – target ES2022, `moduleResolution: "bundler"`
+- **Angular Router** – roteamento client-side
+- **Angular SSR** – renderização no servidor (Express)
+- **Vitest** – testes unitários (compatível com `@angular/core/testing`)
+- **Standalone components** – sem NgModules; componentes importados diretamente nas rotas e no shell
+
+---
+
+## Decisões técnicas e arquiteturais
+
+### Angular e Standalone Components
+
+- Uso de **standalone components** (sem módulos) para reduzir boilerplate e alinhar com a direção atual do Angular.
+- Rotas declaradas em `app.routes.ts` com import direto do `CalculatorComponent`; o `App` importa apenas `RouterOutlet`.
+
+### Estado com Signals
+
+- Todo o estado da calculadora (display, valor anterior, operação, “waiting for new value”, histórico) é mantido com **Angular Signals**.
+- Motivação: reatividade fine-grained, menos ciclos de detecção de mudanças e API simples (`signal()`, `computed()` quando necessário). Sem RxJS para esse estado.
+
+### Histórico em memória
+
+- Histórico é um array em memória (signal de lista); **não há persistência** (localStorage ou backend).
+- Escopo: apenas demonstrar a feature e manter a aplicação simples. Persistência pode ser adicionada depois sem mudar a API do componente (ex.: serviço de histórico injetável).
+
+### Teclado global
+
+- Uso de `@HostListener('window:keydown')` no componente da calculadora para que atalhos funcionem enquanto a aplicação está em foco, sem precisar focar em um input.
+- `event.preventDefault()` nas teclas mapeadas evita comportamentos indesejados do browser (ex.: submit com Enter).
+
+### Testes com Vitest
+
+- Projeto configurado com **Vitest** (em vez de Jasmine/Karma) para testes unitários, conforme `tsconfig.spec.json` (`types: ["vitest/globals"]`) e builder `@angular/build:unit-test`.
+- Testes do `CalculatorComponent` cobrem: inicialização, entrada de números/decimais, operações, histórico, teclado e casos extremos (ex.: divisão por zero). O `App` é testado com TestBed e verificação do `router-outlet`.
+
+### TypeScript e build
+
+- **moduleResolution: "bundler"** e **module: "ES2022"** para compatibilidade com o pipeline de build do Angular e com ESM.
+- **strict** e opções adicionais do `angularCompilerOptions` habilitadas para maior segurança de tipos e templates.
+
+### SSR
+
+- Aplicação preparada para **Server-Side Rendering** (Angular SSR + Express em `server.ts`), permitindo primeiro carregamento renderizado no servidor. A calculadora em si não depende de APIs server-side; o SSR melhora principalmente SEO e tempo até primeiro conteúdo.
+
+### Estilos
+
+- Estilos da calculadora ficam no CSS do componente (scoped); estilos globais em `styles.css`. Sem pré-processador (SCSS) ou biblioteca de componentes para manter o projeto enxuto.
+
+---
+
+## Resumo
+
+| Aspecto              | Escolha / observação                                  |
+|----------------------|------------------------------------------------------|
+| Framework            | Angular 21, standalone, signals                     |
+| Estado               | Signals no componente da calculadora                 |
+| Rotas                | Router com lazy-friendly (componente standalone)    |
+| Testes               | Vitest + Angular Testing API                         |
+| Build / TS            | ES2022, moduleResolution bundler, strict             |
+| Histórico            | Em memória; sem persistência                         |
+| Acessibilidade       | Teclado global; botões e ações documentados         |
+
+Para dúvidas sobre a API do Angular ou do Vitest, consulte a [documentação do Angular](https://angular.dev) e a [documentação do Vitest](https://vitest.dev).
